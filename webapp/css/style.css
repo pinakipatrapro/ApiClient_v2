@@ -1,0 +1,13 @@
+/*Set Master Transparency*/
+
+.sapMSplitContainerMaster {
+    background-color: #ffffff00;
+}
+/*Searchfield visibility*/
+.sapMSFF{
+	background: #ffffff85;	
+}
+/*Search field color*/
+.sapMSFI {
+    color: #346187;
+}
