@@ -1,6 +1,6 @@
 <mvc:View controllerName="pinaki.sap.com.ApiClient.controller.Slider" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
 	<Page showHeader="false" backgroundDesign="Transparent">
-		
+		<Text text="Placeholder"/>
 	</Page>
 </mvc:View>

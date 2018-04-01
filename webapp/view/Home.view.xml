@@ -4,7 +4,7 @@
 		<SearchField class="sapUiMediumMargin" placeholder="Enter service url " width="90%"/>
 		<VBox alignItems="Center" class="sapUiLargeMarginTop">
 			<core:Icon src="sap-icon://customer-history" color="#027761" hoverColor="#346187"
-			size="2rem" press="onHistoryPress" tooltip="Click to view activity history"/>
+			size="2rem" press="toggleMasterPanelVisibility" tooltip="Click to view activity history"/>
 		</VBox>
 	</Page>
 </mvc:View>
