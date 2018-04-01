@@ -29,7 +29,10 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -57,9 +60,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -72,11 +77,16 @@
 					"target": []
 				}
 			},
-			"routes": [{
-				"name": "Home",
-				"pattern": "",
-				"target": ["Slider", "Home"]
-			}],
+			"routes": [
+				{
+					"name": "Home",
+					"pattern": "",
+					"target": [
+						"Slider",
+						"Home"
+					]
+				}
+			],
 			"targets": {
 				"Slider": {
 					"viewType": "XML",
@@ -96,5 +106,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }
