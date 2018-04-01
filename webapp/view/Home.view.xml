@@ -7,5 +7,6 @@
 			<core:Icon src="sap-icon://customer-history" color="#027761" hoverColor="#346187"
 			size="2rem" press="toggleMasterPanelVisibility" tooltip="Click to view activity history"/>
 		</VBox>
+		<html:canvas  id="metaLoadJSChart" height="50%"></html:canvas>
 	</Page>
 </mvc:View>
