@@ -1,16 +1,19 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"pinaki/sap/com/ApiClient/controller/BaseController"
-], function(Controller, JSONModel, BaseController) {
+	"pinaki/sap/com/ApiClient/controller/BaseController",
+	"pinaki/sap/com/ApiClient/util/Formatter"
+], function(Controller, JSONModel, BaseController,oFormatter) {
 	"use strict";
 	var oData = {
 		// Crenentials- HCP Credentials
-		"mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
+		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
 	return BaseController.extend("pinaki.sap.com.ApiClient.controller.Home", {
+		oFormatter : oFormatter,
 		onInit: function() {
 			this.initializeLocalData(this);
 		},
@@ -28,6 +31,7 @@ sap.ui.define([
 			}
 		},
 		onLoadUrlPress: function() {
+			oConfigModel.setProperty("/metaDataLoaded", false);
 			var url = oConfigModel.getProperty('/mainUrl');
 			performance.mark("requestSent");
 			var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
@@ -47,6 +51,10 @@ sap.ui.define([
 					metadata: oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0]
 				}, true);
 			}.bind(this));
+		},
+		onPanelSearch : function(oEvent){
+			var searchValue = oEvent.getSource().getValue();
+			oEvent.getSource().getParent().getParent().getBinding('items').filter(new sap.ui.model.Filter('name','Contains',searchValue));
 		},
 		metaLoadPerformance: function() {
 			performance.mark("requestCompleted");

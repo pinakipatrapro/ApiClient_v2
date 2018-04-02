@@ -11,3 +11,7 @@
 .sapMSFI {
     color: #346187;
 }
+/*Adjust search Fiels Border Bottom Visibility*/
+.sapContrast.sapMTB, .sapContrast .sapMTB {
+    border-bottom: 1px solid #69859d00;
+}

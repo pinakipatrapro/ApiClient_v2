@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<List items="{path:'idConfigModel>/metadata/entitySet'}" growing="true" class="sapContrast sapContrastPlus" growingThreshold="7">
+		<headerToolbar>
+			<Toolbar>
+				<SearchField placeholder="Seacrh Entity Sets" liveChange='onPanelSearch'/>
+			</Toolbar>
+		</headerToolbar>
+		<NotificationListItem class="sapUiSizeCompact"
+			title="{idConfigModel>name}"
+			showCloseButton="false"
+			description="{
+				parts : [{path : 'idConfigModel>extensions'}, {path : 'idConfigModel>entityType'}],
+				formatter : '.oFormatter.formatEntitySetDesc'
+			}"
+			priority="Low"
+		>
+		</NotificationListItem>
+	</List>
+</core:FragmentDefinition>
