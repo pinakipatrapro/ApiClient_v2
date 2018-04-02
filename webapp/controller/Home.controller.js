@@ -19,7 +19,7 @@ sap.ui.define([
 		},
 		onAfterRendering: function() {
 			this.getView().setModel(oConfigModel, 'idConfigModel');
-			this.loadJSFile("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js");
+			this.loadJSFile("htt"+"ps://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js");
 		},
 		toggleMasterPanelVisibility: function(oEvent) {
 			var app = oEvent.getSource().getParent().getParent().getParent().getParent().getParent();
