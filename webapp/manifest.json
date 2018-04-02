@@ -60,11 +60,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -77,16 +75,21 @@
 					"target": []
 				}
 			},
-			"routes": [
-				{
-					"name": "Home",
-					"pattern": "",
-					"target": [
-						"Slider",
-						"Home"
-					]
-				}
-			],
+			"routes": [{
+				"name": "Home",
+				"pattern": "",
+				"target": [
+					"Slider",
+					"Home"
+				]
+			}, {
+				"name": "Association",
+				"pattern": "AssociationSets/{entitySet}",
+				"target": [
+					"Slider",
+					"Association"
+				]
+			}],
 			"targets": {
 				"Slider": {
 					"viewType": "XML",
@@ -101,6 +104,14 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "Home",
+					"viewLevel": 1,
+					"controlAggregation": "detailPages"
+				},
+				"Association": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Association",
 					"viewLevel": 1,
 					"controlAggregation": "detailPages"
 				}

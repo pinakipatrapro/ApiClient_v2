@@ -14,6 +14,9 @@
 			}"
 			priority="Low"
 		>
+			<buttons>
+				<Button text="View Associations" press="navToAsociationSet" />
+			</buttons>
 		</NotificationListItem>
 	</List>
 </core:FragmentDefinition>

@@ -56,6 +56,11 @@ sap.ui.define([
 			var searchValue = oEvent.getSource().getValue();
 			oEvent.getSource().getParent().getParent().getBinding('items').filter(new sap.ui.model.Filter('name','Contains',searchValue));
 		},
+		navToAsociationSet : function(oEvent){
+			this.getOwnerComponent().getRouter().navTo("Association", {
+				entitySet :oEvent.getSource().getParent().getParent().getProperty('title')
+			});
+		},
 		metaLoadPerformance: function() {
 			performance.mark("requestCompleted");
 			performance.measure(
