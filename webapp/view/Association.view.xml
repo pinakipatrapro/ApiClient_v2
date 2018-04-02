@@ -1,7 +1,9 @@
 <mvc:View controllerName="pinaki.sap.com.ApiClient.controller.Association" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
 	<Page showHeader="false" backgroundDesign="Transparent">
-	
-		
+		<VBox alignItems="Center" class="sapUiSmallMargin">
+			<Label text="Entityset(s) related to {idConfigModel>/assocForEntitySet/name}" design="Bold"/>
+		</VBox>
+		<core:Fragment fragmentName="pinaki.sap.com.ApiClient.fragments.AssociatedEntitySetPanel" type="XML"/>
 	</Page>
 </mvc:View>

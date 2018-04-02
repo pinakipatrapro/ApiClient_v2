@@ -7,8 +7,9 @@ sap.ui.define([
 	"use strict";
 	var oData = {
 		// Crenentials- HCP Credentials
-		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
-		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
+		// https://services.odata.org/V3/Northwind/Northwind.svc/	
+		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		"mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
@@ -18,7 +19,7 @@ sap.ui.define([
 			this.initializeLocalData(this);
 		},
 		onAfterRendering: function() {
-			this.getView().setModel(oConfigModel, 'idConfigModel');
+			this.getView().getParent().getParent().setModel(oConfigModel, 'idConfigModel');
 			this.loadJSFile("htt"+"ps://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js");
 		},
 		toggleMasterPanelVisibility: function(oEvent) {
@@ -40,7 +41,7 @@ sap.ui.define([
 				}
 			});
 			oModel.attachMetadataLoaded(this.serviceInitialized(oModel));
-			this.getView().setModel(oModel);
+			this.getView().getParent().getParent().setModel(oModel);
 		},
 		serviceInitialized: function(oMainModel) {
 			oMainModel.attachMetadataLoaded(function() {
