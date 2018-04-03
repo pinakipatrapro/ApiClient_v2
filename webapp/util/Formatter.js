@@ -26,7 +26,7 @@ sap.ui.define([], function() {
 			var aString = [];
 			if (value) {
 				value.forEach(function(e) {
-					aString.push("Parameter Name : " + e.name + " | type " + e.type + " | mode " + e.mode);
+					aString.push(e.name + " : " + e.value);
 				});
 			}
 			aString.splice( 0, 0, "Association Name : " + assocName );

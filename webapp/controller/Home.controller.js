@@ -8,8 +8,8 @@ sap.ui.define([
 	var oData = {
 		// Crenentials- HCP Credentials
 		// https://services.odata.org/V3/Northwind/Northwind.svc/	
-		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
-		"mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
+		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
