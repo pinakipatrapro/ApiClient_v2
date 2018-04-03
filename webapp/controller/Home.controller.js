@@ -48,6 +48,7 @@ sap.ui.define([
 				this.metaLoadPerformance();
 				oConfigModel.setProperty("/metaDataLoaded", true);
 				this.initAnalytics();
+				oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0].entityType = oMainModel.getServiceMetadata().dataServices.schema[0].entityType;
 				oConfigModel.setData({
 					metadata: oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0]
 				}, true);
@@ -60,6 +61,11 @@ sap.ui.define([
 		navToAsociationSet : function(oEvent){
 			this.getOwnerComponent().getRouter().navTo("Association", {
 				entitySet :oEvent.getSource().getParent().getParent().getProperty('title')
+			});
+		},
+		navToEntitySetData : function(oEvent){
+			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
+				entitySet :oEvent.getSource().getProperty('title')
 			});
 		},
 		metaLoadPerformance: function() {

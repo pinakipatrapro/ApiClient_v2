@@ -30,7 +30,7 @@ sap.ui.define([
 			var aRelatedAssociation = [];
 			aAssociationSet.forEach(function(e) {
 				var aNodes = e.end;
-				for (var i = 0; i < aNodes.length; i++) {
+				for (var i = 0; i < aNodes.length; i++) { 
 					if (aNodes[i].entitySet === entitySetName) {
 						aRelatedAssociation.push({
 							"entitySet": aNodes[Math.abs(i - 1)].entitySet,

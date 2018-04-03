@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "pinaki.sap.com.ApiClient.ApiClient_v2",
+        "description": "Api Client",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#ApiClient_v2-Display",
+        "navigationComponentName": "pinaki.sap.com.ApiClient",
+        "intentSemanticObject": "ApiClient_v2",
+        "intentAction": "Display",
+        "html5ApplicationName": "apiclientv2",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "5df8b5ce-4525-4e86-9e7c-c8c4df2f37dd"
+        ],
+        "contentPackages": [
+            "6fff2f07-30a3-4abc-9c6f-8dc89fd7ba6c"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "API Client",
+        "subtitle": "Explore your data services",
+        "searchKeywords": "API Client,Explore your data services",
+        "displayIconUrl": "sap-icon://accounting-document-verification",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

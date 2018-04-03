@@ -6,7 +6,7 @@
 			<core:Icon src="sap-icon://customer-history" color="#027761" hoverColor="#346187" size="2rem" press="toggleMasterPanelVisibility"
 				tooltip="Click to view activity history"/>
 		</VBox>
-		<html:canvas id="metaLoadJSChart" height="50%"></html:canvas>
+		<html:canvas id="metaLoadJSChart" height="50%" class="sapUiLargeMarginEnd"></html:canvas>
 		<l:Grid defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop sapUiSizeCompact" visible="{idConfigModel>/metaDataLoaded}">
 			<core:Fragment fragmentName="pinaki.sap.com.ApiClient.fragments.EntitySetPanel" type="XML"/>
 			<core:Fragment fragmentName="pinaki.sap.com.ApiClient.fragments.FunctionImportPanel" type="XML"/>

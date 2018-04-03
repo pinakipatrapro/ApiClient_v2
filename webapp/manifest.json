@@ -42,9 +42,12 @@
 		"dependencies": {
 			"minUI5Version": "1.30.0",
 			"libs": {
-				"sap.ui.layout": {},
+				"sap.m": {},
+				"sap.ui.comp": {
+					"minVersion": ""
+				},
 				"sap.ui.core": {},
-				"sap.m": {}
+				"sap.ui.layout": {}
 			}
 		},
 		"contentDensities": {
@@ -93,6 +96,14 @@
 						"Slider",
 						"Association"
 					]
+				},
+				{
+					"name": "EntitySetData",
+					"pattern": "EntitySetData/{entitySet}",
+					"target": [
+						"Slider",
+						"EntitySetData"
+					]
 				}
 			],
 			"targets": {
@@ -117,6 +128,14 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "Association",
+					"viewLevel": 1,
+					"controlAggregation": "detailPages"
+				},
+				"EntitySetData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "EntitySetData",
 					"viewLevel": 1,
 					"controlAggregation": "detailPages"
 				}

@@ -1,0 +1,18 @@
+<mvc:View controllerName="pinaki.sap.com.ApiClient.controller.EntitySetData" 
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="idEntitySetDataPage" showHeader="false" >
+		<VBox alignItems="Center"  class="sapUiSmallMarginTop">
+			<Label design="Bold" text="Expore Entityset : {idConfigModel>/currentEntitySetData/name}"/>
+		</VBox>
+		<!--<smartFilterBar:SmartFilterBar -->
+		<!--	id="smartFilterBar" -->
+		<!--	entitySet="{idConfigModel>/currentEntitySetData/name}" />-->
+	
+	</Page>
+</mvc:View>

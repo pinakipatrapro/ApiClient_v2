@@ -15,3 +15,6 @@
 .sapContrast.sapMTB, .sapContrast .sapMTB {
     border-bottom: 1px solid #69859d00;
 }
+.sapUshellShell .sapMPageBgStandard {
+    background-color: #fafafa00;
+}
