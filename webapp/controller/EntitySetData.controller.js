@@ -24,8 +24,8 @@ sap.ui.define([
 			var aEntitySet = this.getView().getModel('idConfigModel').getData().metadata.entitySet;
 			var oProperty;
 			var aProperty = [];
-			for(var i=0;i<aEntitySet.length;i++){
-				if(aEntitySet[i].name === entitySetName){
+			for (var i = 0; i < aEntitySet.length; i++) {
+				if (aEntitySet[i].name === entitySetName) {
 					break;
 				}
 			}
@@ -48,9 +48,41 @@ sap.ui.define([
 				backgroundDesign: "Transparent",
 				width: "90%",
 				demandPopin: true,
-				initiallyVisibleFields: aProperty.join(',')
+				initiallyVisibleFields: aProperty.join(','),
+				items: [
+					new sap.m.Table({
+						mode: "SingleSelectMaster",
+						selectionChange: this.onTableItemPress
+					})
+				]
 			});
 			this.getView().byId('idEntitySetDataPage').addItem(smartTable);
+		},
+		onTableItemPress: function(oEvent) {
+			new sap.m.Menu({
+				title: 'Choose Action',
+				items: [
+					new sap.m.MenuItem({
+						icon: 'sap-icon://edit',
+						text: 'Edit'
+					}),
+					new sap.m.MenuItem({
+						icon: 'sap-icon://delete',
+						text: 'Delete'
+					}),
+					new sap.m.MenuItem({
+						icon: 'sap-icon://chain-link',
+						text: 'Associations',
+						items: [
+							new sap.m.MenuItem({
+								text: 'Delete'
+							}), new sap.m.MenuItem({
+								text: 'Delete'
+							})
+						]
+					})
+				]
+			}).openBy(oEvent.getSource().getSelectedItem());
 		}
 	});
 });

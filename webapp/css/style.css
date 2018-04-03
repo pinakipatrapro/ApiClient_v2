@@ -37,3 +37,9 @@
     border-bottom: 1px black;
     background: #ffffffa1;
 }
+
+
+/*Menu Item*/
+.sapUiMnu {
+    left: 40% ! important;
+}
