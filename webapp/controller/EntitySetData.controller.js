@@ -17,37 +17,40 @@ sap.ui.define([
 			this.getView().getModel('idConfigModel').setProperty("/currentEntitySetData", {
 				"name": entitySetName
 			});
-			this.buildSmartTable(entitySetName,this.fetchRelatedProperties(entitySetName));
+			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName));
 		},
 		fetchRelatedProperties: function(entitySetName) {
 			var aEntityType = this.getView().getModel('idConfigModel').getData().metadata.entityType;
+			var aEntitySet = this.getView().getModel('idConfigModel').getData().metadata.entitySet;
 			var oProperty;
 			var aProperty = [];
-			aEntityType.forEach(function(e) {
-				if (e.name === entitySetName || e.name === (entitySetName + "Type")) {
-					oProperty = e.property;
+			for(var i=0;i<aEntitySet.length;i++){
+				if(aEntitySet[i].name === entitySetName){
+					break;
 				}
-			});
+			}
+			oProperty = aEntityType[i].property;
 			oProperty.forEach(function(e) {
 				aProperty.push(e.name);
 			});
 			return aProperty;
 		},
-		buildSmartTable: function(entitySetName,aProperty) {
-			if(this.getView().byId('idEntitySetDataSmartTable') !== undefined){
+		buildSmartTable: function(entitySetName, aProperty) {
+			if (this.getView().byId('idEntitySetDataSmartTable') !== undefined) {
 				this.getView().byId('idEntitySetDataSmartTable').destroy();
 			}
-			var smartTable =  new sap.ui.comp.smarttable.SmartTable(this.createId("idEntitySetDataSmartTable"),{
+			var smartTable = new sap.ui.comp.smarttable.SmartTable(this.createId("idEntitySetDataSmartTable"), {
 				entitySet: entitySetName,
 				tableType: "ResponsiveTable",
 				useTablePersonalisation: true,
-				showRowCount : true,
-				enableAutoBinding : true,
-				backgroundDesign : "Transparent",
-				demandPopin : true,
-				initiallyVisibleFields : aProperty.join(',')
+				showRowCount: true,
+				enableAutoBinding: true,
+				backgroundDesign: "Transparent",
+				width: "90%",
+				demandPopin: true,
+				initiallyVisibleFields: aProperty.join(',')
 			});
-			this.getView().byId('idEntitySetDataPage').addContent(smartTable);
+			this.getView().byId('idEntitySetDataPage').addItem(smartTable);
 		}
 	});
 });

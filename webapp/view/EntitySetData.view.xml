@@ -6,8 +6,8 @@
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page id="idEntitySetDataPage" showHeader="false" >
-		<VBox alignItems="Center"  class="sapUiSmallMarginTop">
+	<Page showHeader="false" backgroundDesign="Transparent">
+		<VBox alignItems="Center"  class="sapUiSmallMarginTop" id="idEntitySetDataPage" backgroundDesign="Transparent">
 			<Label design="Bold" text="Expore Entityset : {idConfigModel>/currentEntitySetData/name}"/>
 		</VBox>
 		<!--<smartFilterBar:SmartFilterBar -->

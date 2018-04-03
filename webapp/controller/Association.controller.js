@@ -41,6 +41,11 @@ sap.ui.define([
 			});
 			return aRelatedAssociation;
 		},
+		navToEntitySetData : function(oEvent){
+			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
+				entitySet :oEvent.getSource().getProperty('title')
+			});
+		},
 		filterRelatedEntitySet: function(aRelatedEntitySet) {
 			var aRelatedEntitySet = aRelatedEntitySet;
 			var oData = this.getView().getModel('idConfigModel').getData();

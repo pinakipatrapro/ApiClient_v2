@@ -18,3 +18,22 @@
 .sapUshellShell .sapMPageBgStandard {
     background-color: #fafafa00;
 }
+
+/*Smart Table Transparency*/
+.sapMListTbl th {
+    background: #f7f7f700;
+    border: 0px solid #c7d8e6;
+}
+
+.sapMListBGTranslucent .sapMListTblHeader, .sapMListBGTranslucent .sapMListTblFooter {
+    background-color: #ffffff9e;
+}
+.sapMLIB {
+    background: #ffffff47;
+    border-bottom: 1px solid #e5e5e500;
+    padding: 0 1rem 0 1rem;
+}
+.sapMListTblSubRow {
+    border-bottom: 1px black;
+    background: #ffffffa1;
+}

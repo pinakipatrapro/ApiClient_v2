@@ -5,7 +5,7 @@
 				<SearchField placeholder="Seacrh Entity Sets" liveChange='onPanelSearch'/>
 			</Toolbar>
 		</headerToolbar>
-		<NotificationListItem class="sapUiSizeCompact"
+		<NotificationListItem class="sapUiSizeCompact"  press="navToEntitySetData"
 			title="{idConfigModel>name}"
 			showCloseButton="false"
 			description="{
