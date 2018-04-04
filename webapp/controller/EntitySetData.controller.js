@@ -5,7 +5,6 @@ sap.ui.define([
 	"pinaki/sap/com/ApiClient/util/Formatter"
 ], function(Controller, JSONModel, BaseController, oFormatter) {
 	"use strict";
-
 	return BaseController.extend("pinaki.sap.com.ApiClient.controller.EntitySetData", {
 		oFormatter: oFormatter,
 		onInit: function() {
@@ -18,6 +17,7 @@ sap.ui.define([
 				"name": entitySetName
 			});
 			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName));
+			this.getView().getModel('idConfigModel').setProperty("/currentAssociation",this.getRelatedEntitySet(entitySetName));
 		},
 		fetchRelatedProperties: function(entitySetName) {
 			var aEntityType = this.getView().getModel('idConfigModel').getData().metadata.entityType;
@@ -51,15 +51,18 @@ sap.ui.define([
 				initiallyVisibleFields: aProperty.join(','),
 				items: [
 					new sap.m.Table({
+						growing : true,
+						growingScrollToLoad : true,
 						mode: "SingleSelectMaster",
-						selectionChange: this.onTableItemPress
+						selectionChange: [this.onTableItemPress,this]
 					})
 				]
 			});
 			this.getView().byId('idEntitySetDataPage').addItem(smartTable);
 		},
 		onTableItemPress: function(oEvent) {
-			new sap.m.Menu({
+			
+			var oMenu = new sap.m.Menu({
 				title: 'Choose Action',
 				items: [
 					new sap.m.MenuItem({
@@ -73,16 +76,17 @@ sap.ui.define([
 					new sap.m.MenuItem({
 						icon: 'sap-icon://chain-link',
 						text: 'Associations',
-						items: [
-							new sap.m.MenuItem({
-								text: 'Delete'
-							}), new sap.m.MenuItem({
-								text: 'Delete'
+						items: {
+							path : '/currentAssociation',
+							template : new sap.m.MenuItem({
+								text:   '{entitySet} ({associationName})'
 							})
-						]
+						}
 					})
 				]
-			}).openBy(oEvent.getSource().getSelectedItem());
+			});
+			oMenu.openBy(oEvent.getSource().getSelectedItem());
+			oMenu.setModel(this.getView().getModel('idConfigModel'));
 		}
 	});
 });

@@ -7,8 +7,9 @@ sap.ui.define([
 	"use strict";
 	var oData = {
 		// Crenentials- HCP Credentials
-		"mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
-		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		// "mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
+		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
+		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		"metaDataLoaded": false
 	};
