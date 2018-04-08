@@ -29,7 +29,7 @@ sap.ui.define([
 					break;
 				}
 			}
-			oProperty = aEntityType[i].property;
+			oProperty = aEntityType[i].	property;
 			oProperty.forEach(function(e) {
 				aProperty.push(e.name);
 			});
@@ -69,7 +69,7 @@ sap.ui.define([
 						icon: 'sap-icon://edit',
 						text: 'Edit'
 					}),
-					new sap.m.MenuItem({
+					new sap.m.MenuItem({	
 						icon: 'sap-icon://delete',
 						text: 'Delete'
 					}),
@@ -79,7 +79,8 @@ sap.ui.define([
 						items: {
 							path : '/currentAssociation',
 							template : new sap.m.MenuItem({
-								text:   '{entitySet} ({associationName})'
+								text:   '{entitySet} ({associationName})',
+								press : [this.onAssociationPress,this]
 							})
 						}
 					})
@@ -87,6 +88,9 @@ sap.ui.define([
 			});
 			oMenu.openBy(oEvent.getSource().getSelectedItem());
 			oMenu.setModel(this.getView().getModel('idConfigModel'));
+		},
+		onAssociationPress : function(oEvent){
+			
 		}
 	});
 });

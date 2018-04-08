@@ -7,10 +7,11 @@ sap.ui.define([
 	"use strict";
 	var oData = {
 		// Crenentials- HCP Credentials
-		// "mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
+		"mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
 		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
-		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
+		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
@@ -50,9 +51,7 @@ sap.ui.define([
 				oConfigModel.setProperty("/metaDataLoaded", true);
 				this.initAnalytics();
 				oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0].entityType = oMainModel.getServiceMetadata().dataServices.schema[0].entityType;
-				oConfigModel.setData({
-					metadata: oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0]
-				}, true);
+				oConfigModel.setProperty("/metadata",oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0]);
 			}.bind(this));
 		},
 		onPanelSearch : function(oEvent){
