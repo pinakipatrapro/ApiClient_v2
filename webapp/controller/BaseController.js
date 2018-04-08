@@ -36,31 +36,37 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
-		loadJSFile : function(filename) {
+		loadJSFile: function(filename) {
 			var fileref = document.createElement('script');
 			fileref.setAttribute("type", "text/javascript");
 			fileref.setAttribute("src", filename);
-			if (typeof fileref != "undefined"){
+			if (typeof fileref != "undefined") {
 				document.getElementsByTagName("head")[0].appendChild(fileref);
 			}
 		},
 		getRelatedEntitySet: function(entitySetName) {
-			var oData = this.getView().getModel('idConfigModel').getData();
-			this.getView().getModel('idConfigModel').setProperty("/assocForEntitySet",{"name":entitySetName});
-			var aAssociationSet = oData.metadata.associationSet;
-			var aRelatedAssociation = [];
-			aAssociationSet.forEach(function(e) {
-				var aNodes = e.end;
-				for (var i = 0; i < aNodes.length; i++) { 
-					if (aNodes[i].entitySet === entitySetName) {
-						aRelatedAssociation.push({
-							"entitySet": aNodes[Math.abs(i - 1)].entitySet,
-							"associationName": e.name
-						});
-					}
+			var entitySet = this.getEntityTypeFromEntitySet(entitySetName);
+			return entitySet.navigationProperty;
+		},
+		getEntitysetFromAssociationRel : function(assocRole){
+			var associationData = this.getView().getModel('idConfigModel').getData().metadata.associationSet;
+			for (var i = 0; i < associationData.length; i++) {
+				if(associationData[i].association === assocRole){
+					break;
 				}
-			});
-			return aRelatedAssociation;
+			}
+			return associationData[i].end[1].entitySet;
+		},
+		getEntityTypeFromEntitySet: function(entitySetName) {
+			var oData = this.getView().getModel('idConfigModel').getData();
+			var entitySet = oData.metadata.entitySet;
+			for (var i = 0; i < entitySet.length; i++) {
+				if(entitySet[i].name === entitySetName){
+					break;
+				}
+			}
+			return oData.metadata.entityType[i];
+
 		}
 	});
 });

@@ -19,13 +19,16 @@ sap.ui.define([
 		_onAssociationRouteMatched: function(oEvent) {
 			var entitySetName = oEvent.getParameters().arguments.entitySet;
 			var aRelatedEntitySet = this.getRelatedEntitySet(entitySetName);
-			if (aRelatedEntitySet.length > 0) {
+			if (!aRelatedEntitySet){
+				this.getView().getModel('idConfigModel').setProperty('/currentAssociation', []);
+			}else if (aRelatedEntitySet.length > 0) {
 				this.filterRelatedEntitySet(aRelatedEntitySet);
 			}
 		},
 		navToEntitySetData : function(oEvent){
 			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
-				entitySet :oEvent.getSource().getProperty('title')
+				entitySet : oEvent.getSource().getProperty('title'),
+				path:'default'
 			});
 		},
 		filterRelatedEntitySet: function(aRelatedEntitySet) {
@@ -35,13 +38,13 @@ sap.ui.define([
 			var aEntitySet = oData.metadata.entitySet;
 			aEntitySet.forEach(function(e) {
 				aRelatedEntitySet.forEach(function(f) {
-					if (f.entitySet === e.name) {
+					if (this.getEntitysetFromAssociationRel(f.relationship) === e.name) {
 						var dataSet = e;
 						dataSet.associationName = f.associationName;
 						aEntitySets.push(dataSet);
 					}
-				});
-			});
+				}.bind(this));
+			}.bind(this));
 			this.getView().getModel('idConfigModel').setProperty('/currentAssociation', aEntitySets);
 		}
 

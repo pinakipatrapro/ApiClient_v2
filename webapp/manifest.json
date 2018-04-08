@@ -99,7 +99,7 @@
 				},
 				{
 					"name": "EntitySetData",
-					"pattern": "EntitySetData/{entitySet}",
+					"pattern": "EntitySetData/{entitySet}/{path}",
 					"target": [
 						"Slider",
 						"EntitySetData"

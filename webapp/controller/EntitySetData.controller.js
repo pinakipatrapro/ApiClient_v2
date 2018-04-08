@@ -13,10 +13,14 @@ sap.ui.define([
 		},
 		_onAssociationRouteMatched: function(oEvent) {
 			var entitySetName = oEvent.getParameters().arguments.entitySet;
+			var contextPath = oEvent.getParameters().arguments.path;
+			if(contextPath === 'default'){
+				contextPath = '';
+			}
 			this.getView().getModel('idConfigModel').setProperty("/currentEntitySetData", {
 				"name": entitySetName
 			});
-			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName));
+			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName),atob(contextPath));
 			this.getView().getModel('idConfigModel').setProperty("/currentAssociation",this.getRelatedEntitySet(entitySetName));
 		},
 		fetchRelatedProperties: function(entitySetName) {
@@ -35,12 +39,13 @@ sap.ui.define([
 			});
 			return aProperty;
 		},
-		buildSmartTable: function(entitySetName, aProperty) {
+		buildSmartTable: function(entitySetName, aProperty,tableBindingPath) {
 			if (this.getView().byId('idEntitySetDataSmartTable') !== undefined) {
 				this.getView().byId('idEntitySetDataSmartTable').destroy();
 			}
 			var smartTable = new sap.ui.comp.smarttable.SmartTable(this.createId("idEntitySetDataSmartTable"), {
 				entitySet: entitySetName,
+				tableBindingPath : tableBindingPath,
 				tableType: "ResponsiveTable",
 				useTablePersonalisation: true,
 				showRowCount: true,
@@ -79,7 +84,7 @@ sap.ui.define([
 						items: {
 							path : '/currentAssociation',
 							template : new sap.m.MenuItem({
-								text:   '{entitySet} ({associationName})',
+								text:   '{name}',
 								press : [this.onAssociationPress,this]
 							})
 						}
@@ -90,7 +95,14 @@ sap.ui.define([
 			oMenu.setModel(this.getView().getModel('idConfigModel'));
 		},
 		onAssociationPress : function(oEvent){
-			
+			var assocPath = oEvent.getSource().getBindingContext().getObject().name;
+			var path = this.getView().byId('idEntitySetDataSmartTable').getTable().getSelectedItem().getBindingContext().sPath;
+			path = path + '/' + assocPath;
+			var entitySet = this.getEntitysetFromAssociationRel(oEvent.getSource().getBindingContext().getObject().relationship);
+			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
+				entitySet :entitySet,
+				path : btoa(path)
+			});
 		}
 	});
 });

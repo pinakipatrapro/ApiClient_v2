@@ -7,11 +7,12 @@ sap.ui.define([
 	"use strict";
 	var oData = {
 		// Crenentials- HCP Credentials
-		"mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
+		// "mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
 		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
 		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
+		"mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/sap/sepmra_gr_post/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
@@ -65,7 +66,8 @@ sap.ui.define([
 		},
 		navToEntitySetData : function(oEvent){
 			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
-				entitySet :oEvent.getSource().getProperty('title')
+				entitySet :oEvent.getSource().getProperty('title'),
+				path:'default'
 			});
 		},
 		metaLoadPerformance: function() {
