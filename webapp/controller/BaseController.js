@@ -48,20 +48,40 @@ sap.ui.define([
 			var entitySet = this.getEntityTypeFromEntitySet(entitySetName);
 			return entitySet.navigationProperty;
 		},
-		getEntitysetFromAssociationRel : function(assocRole){
+		getEntitysetFromAssociationRel: function(assocRole) {
 			var associationData = this.getView().getModel('idConfigModel').getData().metadata.associationSet;
 			for (var i = 0; i < associationData.length; i++) {
-				if(associationData[i].association === assocRole){
+				if (associationData[i].association === assocRole) {
 					break;
 				}
 			}
 			return associationData[i].end[1].entitySet;
 		},
+		getEntitysetProperties: function(entitySetName) {
+			var entitySetData = this.getView().getModel('idConfigModel').getData().metadata.entitySet;
+			for (var i = 0; i < entitySetData.length; i++) {
+				if (entitySetData[i].name === entitySetName) {
+					break;
+				}
+			}
+			return entitySetData[i];
+		},
+		getEntitySetExtensions: function(entitySetName) {
+			var oEntitySet = this.getEntitysetProperties(entitySetName);
+			var extensions = oEntitySet.extensions;
+			var aEntitySetProperties = {};
+			if (extensions) {
+				extensions.forEach(function(e) {
+					aEntitySetProperties[e.name] = e.value;
+				});
+			}
+			return aEntitySetProperties;
+		},
 		getEntityTypeFromEntitySet: function(entitySetName) {
 			var oData = this.getView().getModel('idConfigModel').getData();
 			var entitySet = oData.metadata.entitySet;
 			for (var i = 0; i < entitySet.length; i++) {
-				if(entitySet[i].name === entitySetName){
+				if (entitySet[i].name === entitySetName) {
 					break;
 				}
 			}

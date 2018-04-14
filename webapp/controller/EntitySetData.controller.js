@@ -14,14 +14,15 @@ sap.ui.define([
 		_onAssociationRouteMatched: function(oEvent) {
 			var entitySetName = oEvent.getParameters().arguments.entitySet;
 			var contextPath = oEvent.getParameters().arguments.path;
-			if(contextPath === 'default'){
+			if (contextPath === 'default') {
 				contextPath = '';
 			}
 			this.getView().getModel('idConfigModel').setProperty("/currentEntitySetData", {
-				"name": entitySetName
+				"name": entitySetName,
+				"properties" : this.getEntitySetExtensions(entitySetName)
 			});
-			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName),atob(contextPath));
-			this.getView().getModel('idConfigModel').setProperty("/currentAssociation",this.getRelatedEntitySet(entitySetName));
+			this.buildSmartTable(entitySetName, this.fetchRelatedProperties(entitySetName), atob(contextPath));
+			this.getView().getModel('idConfigModel').setProperty("/currentAssociation", this.getRelatedEntitySet(entitySetName));
 		},
 		fetchRelatedProperties: function(entitySetName) {
 			var aEntityType = this.getView().getModel('idConfigModel').getData().metadata.entityType;
@@ -33,19 +34,19 @@ sap.ui.define([
 					break;
 				}
 			}
-			oProperty = aEntityType[i].	property;
+			oProperty = aEntityType[i].property;
 			oProperty.forEach(function(e) {
 				aProperty.push(e.name);
 			});
 			return aProperty;
 		},
-		buildSmartTable: function(entitySetName, aProperty,tableBindingPath) {
+		buildSmartTable: function(entitySetName, aProperty, tableBindingPath) {
 			if (this.getView().byId('idEntitySetDataSmartTable') !== undefined) {
 				this.getView().byId('idEntitySetDataSmartTable').destroy();
 			}
 			var smartTable = new sap.ui.comp.smarttable.SmartTable(this.createId("idEntitySetDataSmartTable"), {
 				entitySet: entitySetName,
-				tableBindingPath : tableBindingPath,
+				tableBindingPath: tableBindingPath,
 				tableType: "ResponsiveTable",
 				useTablePersonalisation: true,
 				showRowCount: true,
@@ -56,17 +57,30 @@ sap.ui.define([
 				initiallyVisibleFields: aProperty.join(','),
 				items: [
 					new sap.m.Table({
-						growing : true,
-						growingScrollToLoad : true,
+						growing: true,
+						growingScrollToLoad: true,
 						mode: "SingleSelectMaster",
-						selectionChange: [this.onTableItemPress,this]
+						selectionChange: [this.onTableItemPress, this]
 					})
-				]
+				],
+				customToolbar: new sap.m.OverflowToolbar({
+					content: [
+						new sap.m.ToolbarSpacer(),
+						new sap.m.Button({
+							text: 'Measure Performance',
+							icon: 'sap-icon://performance',
+							press: [this.calculatePerformance, this]
+						}),
+						new sap.m.Button({
+							icon: 'sap-icon://add',
+						})
+					]
+				})
 			});
 			this.getView().byId('idEntitySetDataPage').addItem(smartTable);
 		},
 		onTableItemPress: function(oEvent) {
-			
+
 			var oMenu = new sap.m.Menu({
 				title: 'Choose Action',
 				items: [
@@ -74,7 +88,7 @@ sap.ui.define([
 						icon: 'sap-icon://edit',
 						text: 'Edit'
 					}),
-					new sap.m.MenuItem({	
+					new sap.m.MenuItem({
 						icon: 'sap-icon://delete',
 						text: 'Delete'
 					}),
@@ -82,10 +96,10 @@ sap.ui.define([
 						icon: 'sap-icon://chain-link',
 						text: 'Associations',
 						items: {
-							path : '/currentAssociation',
-							template : new sap.m.MenuItem({
-								text:   '{name}',
-								press : [this.onAssociationPress,this]
+							path: '/currentAssociation',
+							template: new sap.m.MenuItem({
+								text: '{name}',
+								press: [this.onAssociationPress, this]
 							})
 						}
 					})
@@ -94,14 +108,53 @@ sap.ui.define([
 			oMenu.openBy(oEvent.getSource().getSelectedItem());
 			oMenu.setModel(this.getView().getModel('idConfigModel'));
 		},
-		onAssociationPress : function(oEvent){
+		onAssociationPress: function(oEvent) {
 			var assocPath = oEvent.getSource().getBindingContext().getObject().name;
 			var path = this.getView().byId('idEntitySetDataSmartTable').getTable().getSelectedItem().getBindingContext().sPath;
 			path = path + '/' + assocPath;
 			var entitySet = this.getEntitysetFromAssociationRel(oEvent.getSource().getBindingContext().getObject().relationship);
 			this.getOwnerComponent().getRouter().navTo("EntitySetData", {
-				entitySet :entitySet,
-				path : btoa(path)
+				entitySet: entitySet,
+				path: btoa(path)
+			});
+		},
+		calculatePerformance: function(oEvent) {
+			var that  = this;
+			var source = oEvent.getSource();
+			var entitySet = source.getParent().getParent().getTableBindingPath();
+			if (entitySet.length <= 0) {
+				entitySet = '/' + source.getParent().getParent().getEntitySet();
+			}
+			var oConfigModel = this.getView().getModel('idConfigModel');
+			source.setBusy(true);
+			$.ajax({
+				url: source.getModel().sServiceUrl + entitySet +
+					'?sap-statistics=true&$format=json',
+				type: 'GET',
+
+				success: function(data, textStatus, jqXHR) {
+					var resultSet = [];
+					var headerData = jqXHR.getResponseHeader('sap-statistics');
+					headerData = headerData.split(',');
+					headerData.forEach(function(e) {
+						resultSet.push({
+							key: e.split('=')[0],
+							value: e.split('=')[1]
+						});
+					});
+					oConfigModel.setProperty('/entitySetPerformance', {
+						entityPerformanceLoaded: "true",
+						data: resultSet,
+						count: data.d.results.length
+					});
+					var oPerformanceDialogFragment = sap.ui.xmlfragment("pinaki.sap.com.ApiClient.fragments.EntitySetPerformance");
+					that.getView().addDependent(oPerformanceDialogFragment);
+					oPerformanceDialogFragment.openBy(source);
+					source.setBusy(false);
+				},
+				error: function() {
+
+				}
 			});
 		}
 	});

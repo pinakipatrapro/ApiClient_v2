@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"pinaki/sap/com/ApiClient/controller/BaseController",
+	"pinaki/sap/com/ApiClient/controller/BaseController	",
 	"pinaki/sap/com/ApiClient/util/Formatter"
 ], function(Controller, JSONModel, BaseController,oFormatter) {
 	"use strict";
@@ -12,7 +12,7 @@ sap.ui.define([
 		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
-		"mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/sap/sepmra_gr_post/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
+		"mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
 		"metaDataLoaded": false
 	};
 	var oConfigModel = new JSONModel(oData);
@@ -40,8 +40,9 @@ sap.ui.define([
 			performance.mark("requestSent");
 			var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
 				headers: {
-					"sap-stastics": "true"
-				}
+					"sap-stastics": true
+				},
+				useBatch : false
 			});
 			oModel.attachMetadataLoaded(this.serviceInitialized(oModel));
 			this.getView().getParent().getParent().setModel(oModel);
@@ -111,7 +112,7 @@ sap.ui.define([
 					labels: aDimension,
 					datasets: [{
 						label: "History of metadata load time(Miliseconds) for "+oConfigModel.getProperty('/mainUrl'),
-						backgroundColor: 'rgb(255, 99, 132)',
+						backgroundColor: '#2b017b94',
 						borderColor: 'rgb(255, 99, 132)',
 						data: aMeasures
 					}]

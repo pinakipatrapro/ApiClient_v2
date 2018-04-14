@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Popover placement="VerticalPreferredBottom" title="Fetched {idConfigModel>/entitySetPerformance/count} record(s) successfully">
+		<List items="{path:'idConfigModel>/entitySetPerformance/data'}" >
+			<DisplayListItem label="{idConfigModel>key}" value="{idConfigModel>value} (ms)"/>
+		</List>
+	</Popover>
+</core:FragmentDefinition>
