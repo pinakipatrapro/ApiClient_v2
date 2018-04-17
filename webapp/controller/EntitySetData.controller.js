@@ -85,9 +85,9 @@ sap.ui.define([
 
 			var oMenu = new sap.m.Menu({
 				title: 'Choose Action',
-				closed : function(e){
-					setTimeout(function(){this.getView().byId('idEntitySetDataSmartTable').getTable().removeSelections(true)}.bind(this),100);
-				}.bind(this),
+				// closed : function(e){
+				// 	setTimeout(function(){this.getView().byId('idEntitySetDataSmartTable').getTable().removeSelections(true)}.bind(this),100);
+				// }.bind(this),
 				items: [
 					new sap.m.MenuItem({
 						icon: 'sap-icon://edit',
