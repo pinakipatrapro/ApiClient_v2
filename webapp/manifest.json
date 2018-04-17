@@ -104,6 +104,14 @@
 						"Slider",
 						"EntitySetData"
 					]
+				},
+				{
+					"name": "CreateEntitySetRecord",
+					"pattern": "CreateEntitySetRecord/{entitySet}/{mode}/{path}",
+					"target": [
+						"Slider",
+						"CreateEntitySetRecord"
+					]
 				}
 			],
 			"targets": {
@@ -137,6 +145,14 @@
 					"clearAggregation": true,
 					"viewName": "EntitySetData",
 					"viewLevel": 1,
+					"controlAggregation": "detailPages"
+				},
+				"CreateEntitySetRecord": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "CreateEntitySetRecord",
+					"viewLevel": 3,
 					"controlAggregation": "detailPages"
 				}
 			}

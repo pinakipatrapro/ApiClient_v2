@@ -22,17 +22,20 @@ sap.ui.define([], function() {
 			var string = aString.join(',  ');
 			return string;
 		},
-		formatAssociationSetDesc :function(value, entityType,assocName) {
+		formatAssociationSetDesc: function(value, entityType, assocName) {
 			var aString = [];
 			if (value) {
 				value.forEach(function(e) {
 					aString.push(e.name + " : " + e.value);
 				});
 			}
-			aString.splice( 0, 0, "Association Name : " + assocName );
+			aString.splice(0, 0, "Association Name : " + assocName);
 			var string = aString.join(',  ');
 			return string;
 		},
+		formatCreateEntitySetData: function(value) {
+			return '{'+value+'}';
+		}
 	};
 
 });

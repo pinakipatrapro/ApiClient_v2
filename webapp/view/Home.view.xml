@@ -2,15 +2,19 @@
 	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
 	<Page showHeader="false" backgroundDesign="Transparent">
 		<SearchField class="sapUiMediumMargin" search="onLoadUrlPress" value="{idConfigModel>/mainUrl}" placeholder="Enter service url " width="90%"/>
-		<VBox alignItems="Center" class="sapUiLargeMarginTop">
-			<core:Icon src="sap-icon://customer-history" color="#027761" hoverColor="#346187" size="2rem" press="toggleMasterPanelVisibility"
-				tooltip="Click to view activity history"/>
+		<VBox alignItems="Center" class="sapUiMediumMarginTop sapUiSizeCompact">
+			<HBox alignItems="Center">
+				<Button icon="sap-icon://customer-history" press="toggleMasterPanelVisibility" class="sapUiSmallMarginBeginEnd"
+					tooltip="Click to view activity history" type="Transparent"/>
+				<CheckBox text="Batch Mode" class="sapUiMediumMarginBeginEnd" selected="{idConfigModel>/isBatchMode}"/>
+				<Input placeholder="Request headers in JSON format" class="sapUiMediumMarginBeginEnd" 
+					value="{idConfigModel>/requestHeader}" width="150%"/>
+			</HBox>
 		</VBox>
 		<html:canvas id="metaLoadJSChart" height="50%" class="sapUiLargeMarginEnd"></html:canvas>
 		<l:Grid defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop sapUiSizeCompact" visible="{idConfigModel>/metaDataLoaded}">
 			<core:Fragment fragmentName="pinaki.sap.com.ApiClient.fragments.EntitySetPanel" type="XML"/>
 			<core:Fragment fragmentName="pinaki.sap.com.ApiClient.fragments.FunctionImportPanel" type="XML"/>
 		</l:Grid>
-		
 	</Page>
 </mvc:View>

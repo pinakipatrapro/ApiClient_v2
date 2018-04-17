@@ -17,6 +17,7 @@ sap.ui.define([
 			if (contextPath === 'default') {
 				contextPath = '';
 			}
+			this.getView().getModel().resetChanges();
 			this.getView().getModel('idConfigModel').setProperty("/currentEntitySetData", {
 				"name": entitySetName,
 				"properties" : this.getEntitySetExtensions(entitySetName)
@@ -73,6 +74,7 @@ sap.ui.define([
 						}),
 						new sap.m.Button({
 							icon: 'sap-icon://add',
+							press: [this.createRecord, this]
 						})
 					]
 				})
@@ -83,14 +85,24 @@ sap.ui.define([
 
 			var oMenu = new sap.m.Menu({
 				title: 'Choose Action',
+				closed : function(e){
+					setTimeout(function(){this.getView().byId('idEntitySetDataSmartTable').getTable().removeSelections(true)}.bind(this),100);
+				}.bind(this),
 				items: [
 					new sap.m.MenuItem({
 						icon: 'sap-icon://edit',
-						text: 'Edit'
+						text: 'View / Edit',
+						press: [this.editRecord, this]
 					}),
+					// new sap.m.MenuItem({
+					// 	icon: 'sap-icon://add',
+					// 	text: 'Copy and Create',
+					// 	press: [this.copyCreate, this]
+					// }),
 					new sap.m.MenuItem({
 						icon: 'sap-icon://delete',
-						text: 'Delete'
+						text: 'Delete',
+						press: [this.deleteRecordFromTable, this]
 					}),
 					new sap.m.MenuItem({
 						icon: 'sap-icon://chain-link',
@@ -154,6 +166,37 @@ sap.ui.define([
 				},
 				error: function() {
 
+				}
+			});
+		},
+		createRecord : function(){
+			this.getOwnerComponent().getRouter().navTo("CreateEntitySetRecord", {
+				entitySet : this.getView().getModel('idConfigModel').getData().currentEntitySetData.name,
+				mode:'Create',
+				path : 'New'
+			});
+		},
+		editRecord : function(){
+			this.getOwnerComponent().getRouter().navTo("CreateEntitySetRecord", {
+				entitySet : this.getView().getModel('idConfigModel').getData().currentEntitySetData.name,
+				mode:'Edit',
+				path:btoa(this.getView().byId('idEntitySetDataSmartTable').getTable().getId())
+			});
+		},
+		copyCreate : function(){
+			this.getOwnerComponent().getRouter().navTo("CreateEntitySetRecord", {
+				entitySet : this.getView().getModel('idConfigModel').getData().currentEntitySetData.name,
+				mode:'CopyCreate',
+				path:btoa(this.getView().byId('idEntitySetDataSmartTable').getTable().getId())
+			});
+		},
+		deleteRecordFromTable : function(){
+			var path = this.getView().byId('idEntitySetDataSmartTable').getTable().getSelectedItem().getBindingContext().sPath;
+			this.getView().getModel().remove(path,{
+				success : function(data){
+					sap.m.MessageToast.show('Record Deleted Successfully');
+				},error : function(e){
+					sap.m.MessageToast.show('Error deleting record :'  +e.responseText);
 				}
 			});
 		}

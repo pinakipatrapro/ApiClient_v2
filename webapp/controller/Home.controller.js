@@ -10,10 +10,12 @@ sap.ui.define([
 		// "mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
 		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
 		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
-		// "mainUrl": "htt" + "ps://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
+		// "mainUrl": "https://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
 		"mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
-		"metaDataLoaded": false
+		"metaDataLoaded": false,
+		"isBatchMode": true,
+		"requestHeader" : '{}'
 	};
 	var oConfigModel = new JSONModel(oData);
 	return BaseController.extend("pinaki.sap.com.ApiClient.controller.Home", {
@@ -26,7 +28,7 @@ sap.ui.define([
 			this.loadJSFile("htt"+"ps://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js");
 		},
 		toggleMasterPanelVisibility: function(oEvent) {
-			var app = oEvent.getSource().getParent().getParent().getParent().getParent().getParent();
+			var app = oEvent.getSource().getParent().getParent().getParent().getParent().getParent().getParent();
 			var mode = app.getMode();
 			if (mode === 'HideMode') {
 				app.setMode('PopoverMode');
@@ -38,11 +40,11 @@ sap.ui.define([
 			oConfigModel.setProperty("/metaDataLoaded", false);
 			var url = oConfigModel.getProperty('/mainUrl');
 			performance.mark("requestSent");
+			this.getView().setBusy(true);
 			var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
-				headers: {
-					"sap-stastics": true
-				},
-				useBatch : false
+				headers: JSON.parse(oConfigModel.getProperty('/requestHeader')) || {},
+				useBatch : oConfigModel.getProperty('/isBatchMode'),
+				defaultBindingMode : 'TwoWay'
 			});
 			oModel.attachMetadataLoaded(this.serviceInitialized(oModel));
 			this.getView().getParent().getParent().setModel(oModel);
@@ -51,6 +53,7 @@ sap.ui.define([
 			oMainModel.attachMetadataLoaded(function() {
 				this.metaLoadPerformance();
 				oConfigModel.setProperty("/metaDataLoaded", true);
+				this.getView().setBusy(false);
 				this.initAnalytics();
 				oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0].entityType = oMainModel.getServiceMetadata().dataServices.schema[0].entityType;
 				oConfigModel.setProperty("/metadata",oMainModel.getServiceMetadata().dataServices.schema[0].entityContainer[0]);
@@ -109,11 +112,11 @@ sap.ui.define([
 			var chart = new Chart(ctx, {
 				type: type,
 				data: {
-					labels: aDimension,
+					labels: aDimension, 
 					datasets: [{
 						label: "History of metadata load time(Miliseconds) for "+oConfigModel.getProperty('/mainUrl'),
-						backgroundColor: '#2b017b94',
-						borderColor: 'rgb(255, 99, 132)',
+						backgroundColor: 'rgba(82, 98, 114,0.73)',
+						borderColor: 'rgb(82, 98, 114)',
 						data: aMeasures
 					}]
 				},
