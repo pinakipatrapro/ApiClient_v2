@@ -9,13 +9,13 @@ sap.ui.define([
 		// Crenentials- HCP Credentials
 		// "mainUrl": "htt"+"ps://services.odata.org/V2/OData/OData.svc/",	
 		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
-		// "mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
+		"mainUrl": "htt"+"ps://ldciz5u.wdf.sap.corp:44321/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "https://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
 		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
-		"mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
+		// "mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
 		"metaDataLoaded": false,
 		"isBatchMode": true,
-		"requestHeader" : '{}'
+		"requestHeader" : ''
 	};
 	var oConfigModel = new JSONModel(oData);
 	return BaseController.extend("pinaki.sap.com.ApiClient.controller.Home", {
@@ -39,10 +39,20 @@ sap.ui.define([
 		onLoadUrlPress: function() {
 			oConfigModel.setProperty("/metaDataLoaded", false);
 			var url = oConfigModel.getProperty('/mainUrl');
-			performance.mark("requestSent");
+			var requestHeader = oConfigModel.getProperty('/requestHeader');
 			this.getView().setBusy(true);
+			try{
+				if(requestHeader.length == 0){
+					requestHeader = "{}";
+				}
+				requestHeader =	JSON.parse(requestHeader);
+			}catch(e){
+				this.getView().setBusy(false);
+				sap.m.MessageToast.show('Error parsing JSOn header');
+			}
+			performance.mark("requestSent");
 			var oModel = new sap.ui.model.odata.v2.ODataModel(url, {
-				headers: JSON.parse(oConfigModel.getProperty('/requestHeader')) || {},
+				headers: requestHeader,
 				useBatch : oConfigModel.getProperty('/isBatchMode'),
 				defaultBindingMode : 'TwoWay'
 			});

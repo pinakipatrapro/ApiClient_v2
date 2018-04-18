@@ -39,7 +39,7 @@ sap.ui.define([
 			oProperty.forEach(function(e) {
 				aProperty.push(e.name);
 			});
-			return aProperty;
+			return aProperty.splice(0,5);  //Return initial 5 fields only
 		},
 		buildSmartTable: function(entitySetName, aProperty, tableBindingPath) {
 			if (this.getView().byId('idEntitySetDataSmartTable') !== undefined) {
