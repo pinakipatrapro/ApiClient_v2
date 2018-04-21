@@ -57,7 +57,12 @@ sap.ui.define([
 				defaultBindingMode : 'TwoWay'
 			});
 			oModel.attachMetadataLoaded(this.serviceInitialized(oModel));
+			oModel.attachMetadataFailed(this.metaDataRequestFailed(oModel));
 			this.getView().getParent().getParent().setModel(oModel);
+		},
+		metaDataRequestFailed : function(){
+			this.getView().setBusy(false);
+			sap.m.MessageToast.show('Metadata load failed');
 		},
 		serviceInitialized: function(oMainModel) {
 			oMainModel.attachMetadataLoaded(function() {
