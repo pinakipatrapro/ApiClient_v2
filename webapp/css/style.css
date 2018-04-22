@@ -43,3 +43,20 @@
 .sapUiMnu {
     left: 40% ! important;
 }
+
+/*Json Preety printer*/
+
+pre {
+   padding: 10px 20px;
+   margin: 20px; 
+   overflow: overlay;
+   }
+.json-key {
+   color: brown;
+   }
+.json-value {
+   color: navy;
+   }
+.json-string {
+   color: olive;
+   }
