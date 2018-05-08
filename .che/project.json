@@ -1,1 +1,1 @@
-{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"projectType\":[\"blank\"],\"hcpdeploy\":{\"account\":\"c5262685trial\",\"name\":\"apiclientv2\",\"lastVersionWeTriedToDeploy\":\"1.0.2\"}}"]},"mixinTypes":[]}
+{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"projectType\":[\"blank\"],\"hcpdeploy\":{\"account\":\"c5262685trial\",\"name\":\"apiclientv2\",\"lastVersionWeTriedToDeploy\":\"1.0.3\"}}"]},"mixinTypes":[]}

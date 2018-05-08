@@ -9,9 +9,9 @@ sap.ui.define([
 		// Crenentials- HCP Credentials
 		// "mainUrl": "https://services.odata.org/V2/OData/OData.svc/",	
 		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
-		"mainUrl": "htt" + "ps://ldcix6u.wdf.sap.corp:44311/sap/opu/odata/deal/search_srv/?sap-client=200",
+		// "mainUrl": "htt" + "ps://ldcix6u.wdf.sap.corp:44311/sap/opu/odata/deal/search_srv/?sap-client=200",
 		// "mainUrl": "https://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
-		// "mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
+		"mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
 		// "mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
 		"metaDataLoaded": false,
 		"isBatchMode": true,
