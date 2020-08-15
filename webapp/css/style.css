@@ -1,62 +1,25 @@
-/*Set Master Transparency*/
-
-.sapMSplitContainerMaster {
-    background-color: #ffffff00;
+.standardBorder{
+    border: 3px solid #e6e6e6;
 }
-/*Searchfield visibility*/
-.sapMSFF{
-	background: #ffffff85;	
-}
-/*Search field color*/
-.sapMSFI {
-    color: #346187;
-}
-/*Adjust search Fiels Border Bottom Visibility*/
-.sapContrast.sapMTB, .sapContrast .sapMTB {
-    border-bottom: 1px solid #69859d00;
-}
-.sapUshellShell .sapMPageBgStandard {
-    background-color: #fafafa00;
+.comboBox * {
+    border: none ! important;
+    font-family: EYInterstate;
+    background-color: transparent;
 }
 
-/*Smart Table Transparency*/
-.sapMListTbl th {
-    background: #f7f7f700;
-    border: 0px solid #c7d8e6;
+.comboBox .sapUiIcon {
+    border: none ! important;
+    color: #b2b2b2 ! important;
+    background: transparent ! important;
 }
 
-.sapMListBGTranslucent .sapMListTblHeader, .sapMListBGTranslucent .sapMListTblFooter {
-    background-color: #ffffff9e;
-}
-.sapMLIB {
-    background: #ffffff47;
-    border-bottom: 1px solid #e5e5e500;
-    padding: 0 1rem 0 1rem;
-}
-.sapMListTblSubRow {
-    border-bottom: 1px black;
-    background: #ffffffa1;
+::placeholder {
+    color: red ! important;
+    color: #b2b2b2 ! important;
+    font-style: normal ! important;
+    font-family: EYInterstate;
 }
 
-
-/*Menu Item*/
-.sapUiMnu {
-    left: 40% ! important;
+.comboBox *:active {
+    border: none ! important;
 }
-
-/*Json Preety printer*/
-
-pre {
-   padding: 10px 20px;
-   margin: 20px; 
-   overflow: overlay;
-   }
-.json-key {
-   color: brown;
-   }
-.json-value {
-   color: navy;
-   }
-.json-string {
-   color: olive;
-   }

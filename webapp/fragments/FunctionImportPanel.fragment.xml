@@ -1,18 +1,22 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
-	<List items="{path:'idConfigModel>/metadata/functionImport'}" growing="true" class="sapContrast sapContrastPlus" growingThreshold="7">
-		<headerToolbar>
+	<List items="{path:'idConfigModel>/metadata/functionImport'}" class="sapUiSizeCompact standardBorder">
+		<infoToolbar>
 			<Toolbar>
-				<SearchField placeholder="Seacrh Function Imports" liveChange='onPanelSearch'/>
+				<Label design="Bold" text="Function"/>
+				<ToolbarSpacer/>
+				<SearchField  class="comboBox" placeholder="Search Function" liveChange='onPanelSearch' width="40%"/>
 			</Toolbar>
-		</headerToolbar>
-		<NotificationListItem class="sapUiSizeCompact" press="navToFunctionImport"
+		</infoToolbar>
+		<NotificationListItem press="navToFunctionImport"
 			title="{idConfigModel>name}"
 			showCloseButton="false"
-			description="{
+			authorInitials="{=${idConfigModel>name}.substring(0,2).toUpperCase()}"
+			unread="true"
+			authorName="{
 				parts : [{path : 'idConfigModel>parameter'}, {path : 'idConfigModel>entityType'}],
 				formatter : '.oFormatter.formatFunctionImportDesc'
 			}"
-			priority="Medium"
+			priority="None"
 		>
 		</NotificationListItem>
 	</List>

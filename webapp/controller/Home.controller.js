@@ -6,13 +6,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, BaseController, oFormatter) {
 	"use strict";
 	var oData = {
-		// Crenentials- HCP Credentials
-		// "mainUrl": "https://services.odata.org/V2/OData/OData.svc/",	
-		// https://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/iwfnd/CATALOGSERVICE/
-		// "mainUrl": "htt" + "ps://ldcix6u.wdf.sap.corp:44311/sap/opu/odata/deal/search_srv/?sap-client=200",
-		// "mainUrl": "https://hcpms-p1942051505trial.hanatrial.ondemand.com/SampleServices/ESPM.svc",
-		"mainUrl": "http"+"s://ldcisd4.wdf.sap.corp:44302/sap/opu/odata/sap/ZXC_GWSAMPLE_BASIC_EXT_SRV",
-		// "mainUrl": "h"+"ttps://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",  //https://sapes5.sapdevcenter.com/sap/bc/gui/sap/its/webgui?sap-client=002&sap-language=EN  c5262685  Pinaki@321
+		"mainUrl": "https://services.odata.org/V2/OData/OData.svc/",
 		"metaDataLoaded": false,
 		"isBatchMode": true,
 		"requestHeader": ''
@@ -107,7 +101,7 @@ sap.ui.define([
 			}, true);
 			var aHistory = this.getView().getModel('idLocalStoreModel').getProperty('/metadataLoad/history');
 			aHistory.push({
-				"duration": measures[measures.length - 1].duration,
+				"duration": Math.round(measures[measures.length - 1].duration*10)/10,
 				"datetime": new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
 				"url": oConfigModel.getProperty('/mainUrl')
 			});
@@ -135,9 +129,9 @@ sap.ui.define([
 				data: {
 					labels: aDimension,
 					datasets: [{
-						label: "History of metadata load time(Miliseconds) for " + oConfigModel.getProperty('/mainUrl'),
-						backgroundColor: 'rgba(82, 98, 114,0.73)',
-						borderColor: 'rgb(82, 98, 114)',
+						label: "Time(Mili-seconds) : ",
+						backgroundColor: '#0854a090',
+						borderColor: '#0854a0',
 						data: aMeasures
 					}]
 				},
