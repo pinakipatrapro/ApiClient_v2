@@ -1,6 +1,8 @@
 <mvc:View controllerName="pinaki.sap.com.ApiClient.controller.SplitApp" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<SplitApp id="idSplitApp" backgroundOpacity=".3" mode="HideMode">
-		
-	</SplitApp>
+	<Page title="API Client">
+		<SplitApp id="idSplitApp" backgroundOpacity=".3" mode="HideMode">
+			
+		</SplitApp>
+	</Page>
 </mvc:View>
