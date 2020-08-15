@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/routing/History",
-	"sap/ui/core/mvc/Controller"
-], function (History, Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/UIComponent"
+], function (History, Controller,UIComponent) {
 	"use strict";
 
 	return Controller.extend("pinaki.sap.com.ApiClient.controller.SplitApp", {

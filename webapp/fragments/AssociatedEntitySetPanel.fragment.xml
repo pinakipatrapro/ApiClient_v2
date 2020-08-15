@@ -1,18 +1,22 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
-	<List items="{path:'idConfigModel>/currentAssociation'}" growing="true" class="sapContrast sapContrastPlus" growingThreshold="7">
-		<headerToolbar>
+	<List items="{path:'idConfigModel>/currentAssociation'}" class="sapUiSizeCompact standardBorder sapUiLargeMarginBeginEnd sapUiForceWidthAuto">
+		<infoToolbar>
 			<Toolbar>
-				<SearchField placeholder="Seacrh Entity Sets" liveChange='onPanelSearch'/>
+				<Label design="Bold" text="Entity Sets"/>
+				<ToolbarSpacer/>
+				<SearchField  class="comboBox" placeholder="Search Entity Sets" liveChange='onPanelSearch' width="40%"/>
 			</Toolbar>
-		</headerToolbar>
-		<NotificationListItem class="sapUiSizeCompact"  press="navToEntitySetData"
+		</infoToolbar>
+		<NotificationListItem press="navToEntitySetData"
 			title="{idConfigModel>name}"
 			showCloseButton="false"
-			description="{
+			authorInitials="{=${idConfigModel>name}.substring(0,2).toUpperCase()}"
+			unread="true"
+			authorName="{
 				parts : [{path : 'idConfigModel>extensions'}, {path : 'idConfigModel>entityType'} , {path : 'idConfigModel>associationName'} ],
 				formatter : '.oFormatter.formatAssociationSetDesc'
 			}"
-			priority="Low"
+			priority="None"
 		>
 		</NotificationListItem>
 	</List>

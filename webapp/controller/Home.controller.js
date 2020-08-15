@@ -130,7 +130,7 @@ sap.ui.define([
 					labels: aDimension,
 					datasets: [{
 						label: "Time(Mili-seconds) : ",
-						backgroundColor: '#0854a090',
+						backgroundColor: 'rgba(8, 84, 160, .5)',
 						borderColor: '#0854a0',
 						data: aMeasures
 					}]

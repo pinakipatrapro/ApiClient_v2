@@ -5,7 +5,7 @@
 		<VBox alignItems="Center" class="sapUiMediumMarginTop sapUiSizeCompact">
 			<HBox alignItems="Center">
 				<Button icon="sap-icon://customer-history" press="toggleMasterPanelVisibility" class="sapUiSmallMarginBeginEnd"
-					tooltip="Click to view activity history" type="Transparent"/>
+					tooltip="Click to view activity history" text="View History" type="Transparent"/>
 				<CheckBox text="Batch Mode" class="sapUiMediumMarginBeginEnd" selected="{idConfigModel>/isBatchMode}"/>
 				<Input placeholder="Request headers in JSON format" class="sapUiMediumMarginBeginEnd comboBox" 
 					value="{idConfigModel>/requestHeader}" width="150%"/>
