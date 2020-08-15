@@ -33,8 +33,6 @@ sap.ui.define([
 				this.getView().getModel().setProperty(newBinding.spath, editBinding.getObject());
 				this.getView().byId('idCreateEntrySF').setBindingContext(newBinding);
 			}
-
-			sap.ushell.Container.setDirtyFlag(true);
 		},
 		createSmartFormGroupElements: function(entityType) {
 			var aGroupElements = [];
@@ -58,7 +56,7 @@ sap.ui.define([
 		onCreateSave: function() {
 
 			if (this.getView().getModel().hasPendingChanges()) {
-				this.getView().setBusy(true);
+				// this.getView().setBusy(true);
 				this.getView().getModel().submitChanges({
 					success: function(data) {
 						this.getView().setBusy(false);
@@ -73,8 +71,6 @@ sap.ui.define([
 					}
 				});
 			}
-			sap.ushell.Container.setDirtyFlag(false);
-			// this.getView().getModel().resetChanges();
 		}
 	});
 });

@@ -53,7 +53,7 @@ sap.ui.define([
 				showRowCount: true,
 				enableAutoBinding: true,
 				backgroundDesign: "Transparent",
-				width: "90%",
+				width: "98%",
 				demandPopin: true,
 				initiallyVisibleFields: aProperty.join(','),
 				items: [
@@ -79,6 +79,8 @@ sap.ui.define([
 					]
 				})
 			});
+			smartTable.addStyleClass('sapUiSizeCompact');
+			smartTable.addStyleClass('standardBorder');
 			this.getView().byId('idEntitySetDataPage').addItem(smartTable);
 		},
 		onTableItemPress: function(oEvent) {

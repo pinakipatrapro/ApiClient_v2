@@ -8,8 +8,8 @@
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page showHeader="false" backgroundDesign="Transparent">
-		<smartForm:SmartForm id="idCreateEntrySF"
+	<Page showHeader="false" backgroundDesign="Transparent" floatingFooter="true">
+		<smartForm:SmartForm id="idCreateEntrySF" class="sapUiSizeCompact standardBorder"
 			editTogglable="false" editable="true"
 		>
 		
@@ -17,7 +17,7 @@
 		<footer>
 			<Toolbar class="sapUiSizeCompact">
 				<ToolbarSpacer />
-				<Button text="Save" icon="sap-icon://save" press="onCreateSave"/>
+				<Button text="Save" icon="sap-icon://save" press="onCreateSave" type="Accept"/>
 			</Toolbar>
 		</footer>
 	</Page>
