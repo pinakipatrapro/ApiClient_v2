@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron')
-var express = require('express');
+const express = require('express');
 
 var runUIServer = function () {
     var app = express();
@@ -13,6 +13,7 @@ function createWindow() {
     // Create the browser window.
     runUIServer();
     const win = new BrowserWindow({
+        icon: "assets\\logo.ico",
         width: 800,
         height: 600,
         webPreferences: {
