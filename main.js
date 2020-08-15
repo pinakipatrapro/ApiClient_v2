@@ -13,14 +13,14 @@ function createWindow() {
     // Create the browser window.
     runUIServer();
     const win = new BrowserWindow({
-        icon: "assets\\logo.ico",
         width: 800,
         height: 600,
         webPreferences: {
             sandbox: true,
             webSecurity: false,
             nodeIntegration: true
-        }
+        },
+        icon: "assets\\logo.ico",
     })
 
     // and load the index.html of the app.
