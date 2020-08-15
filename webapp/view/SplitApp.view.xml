@@ -1,6 +1,15 @@
 <mvc:View controllerName="pinaki.sap.com.ApiClient.controller.SplitApp" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<Page title="API Client">
+	<Page  class="reducedHeight" enableScrolling="false">
+	<customHeader>
+		<Toolbar >
+			<Button type="Transparent" icon="sap-icon://home" press="navToHome" class="sapUiSmallMarginBeginEnd"/>
+			<Button type="Transparent" icon="sap-icon://nav-back" press="navBack"/>
+			<ToolbarSpacer />
+			<Title text="API Client"/>
+			<ToolbarSpacer />
+		</Toolbar>
+	</customHeader>
 		<SplitApp id="idSplitApp" backgroundOpacity=".3" mode="HideMode">
 			
 		</SplitApp>

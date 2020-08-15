@@ -23,3 +23,6 @@
 .comboBox *:active {
     border: none ! important;
 }
+.reducedHeight{
+    height: 90% !important;
+}
